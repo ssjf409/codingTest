@@ -57,5 +57,3 @@ map을 사용 안해도 되는데, 이해하는 데 구조적으로 풀었다. (
 람다표현식 ( 펑셔널 프로그래밍)
 
 
-
-https://programmers.co.kr/learn/courses/30/lessons/42585
