@@ -1,0 +1,94 @@
+
+트리
+그래프 중에서 회로(순환)이 없는 구조를 트리라고 한다.
+자료구조에서 쓰이는 트리와 기본적으로는 같으나 차이가 있다.
+
+이진 트리 : 자식이 2개 밖에 없는 트리
+
+이진트리 순회
+
+루트 기준으로 이름을 나눈다. 루트를 먼저 갈꺼면 전위, 중간에 갈꺼면 중위, 나중에 갈꺼면 후위
+ex)
+				1
+		2				3
+	4				5		6
+      7	   			8				9
+10							     11
+
+균형잡힌 2진 탐색트리가 되면 - > logN 밖에 검색하는데 안든다.
+
+1. 중위 순회 ( 자동으로 정렬이 된다.)
+	왼쪽자손, 자신, 오른쪽, 자손순서
+	왼쪽 루트부터 본다. 10 7 4 2 1 8 5 3 6 11 9
+	
+
+2. 전위 순회
+	자신, 왼쪽 자손, 오른쪽 자손
+	1 2 4 7 10 
+	
+
+3. 후위 순회
+	왼쪽 자손, 
+	10 7 4 2 8 5 11 9 6 3 1
+
+4 레벨 순서 순회 (같은 깊이의 ~)
+	큐를 이용해야 한다.
+
+AVL-tree, red-black tree : 균형잡기 위해서 나온 알고리즘
+
+재배치를 얼마나 간단히 하면서 균형을 잡는 자가 중요하다. 오늘날에는 대부분 레블블랙 트리의 변형 형태를 사용한다.
+
+탐색 (그래프에서 다 적용되는..)
+상황에 따라서 활요이 다르다.
+ex) 깊이가 깊은 경우에는 넓이 우선 깊이 탐색, 특정 깊이 이상부터 하거나, 특정 깊이 이상 넘어가면 못 찾는다. 하고 빠져 나오거나..
+
+BFS 재귀호출을 이용해서,
+DFS 큐를 사용
+
+신장트리 : 특정 그래프를 트리로 만드는 방법, 그래프에서 순환되는 부분을 없애는 방법
+쉬운 방법
+DFS 신장 트리 : 깊이 우선 탐색을 통해서 만들거나
+BFS 신장 트리 : 너비 우선 탐색을 통해서 만들거나...
+
+하지만 위는 가중치가 없는 경우고..
+
+가중치가 있을 때는 가중치를 기준으로 한다.
+최소 비용 신장트리 : prim, kruskal, sollin 알고리즘
+
+최단경로 찾기 알고리즘
+SSP (single source shortest path)
+ -다익스트라 알고리즘
+ -bellman-ford
+
+ASP(all pairs shortest path)
+ -shortest paths and matrix multiplication
+ -floyd-warshall
+
+//============
+
+
+#include <string>
+#include <vector>
+
+using namespace std;
+
+long long solution(int n, vector<int> times) {
+    long long answer = 0;
+    long long now_time = 0;
+    long long sum = 0;
+    
+    while(n > sum) {
+        sum = 0;
+        for(int i = 0; i < times.size(); i++) {
+            sum += now_time / times[i];
+        }
+        now_time++;
+        
+    }
+    answer = now_time-1;
+    return answer;
+}
+
+
+//============
+
